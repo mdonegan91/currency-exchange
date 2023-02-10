@@ -1,42 +1,40 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import CurrencyExchange from './currency-exchange';
+import CurrencyExchange from "./currency-exchange.js";
 
-// Business Logic
 
-async function getCurrency(amount, selectCurr) {
-  const response = await CurrencyExchange.getCurrency(amount, selectCurr);
-  if (response.documentation) {
-    printCurrency(response, amount, selectCurr);
+async function getCurrency(amount, currSelect) {
+  const apiResponse = await CurrencyExchange.getCurrency(amount, currSelect);
+  if (apiResponse.documentation) {
+    printCurrency(apiResponse, amount, currSelect);
   } else {
-    printError(amount, selectCurr);
+    printError(amount, currSelect);
   }
 }
 
-// UI Logic
 
 function printCurrency(apiResponse, amount, currSelect) {
 
-  if (currSelect === "euro"){
-    const eurTotal = (apiResponse.conversion_rates.EUR * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD converts to ${eurTotal} ${currSelect}s.`;
-  }else if (currSelect === "yen"){
+  if (currSelect === "JPY") {
     const jpyTotal = (apiResponse.conversion_rates.JPY * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD converts to ${jpyTotal} ${currSelect}.`;
-  }else if (currSelect === "pound"){
-    const gbpTotal = (apiResponse.conversion_rates.GBP * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD converts to ${gbpTotal} ${currSelect}s.`;
-  }else if (currSelect === "can-dollar"){
-    const cadTotal = (apiResponse.conversion_rates.CAD * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD converts to ${cadTotal} ${currSelect}s.`;
-  }else if (currSelect === "swiss-franc"){
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals ¥${jpyTotal} ${currSelect}`;
+  } else if (currSelect === "EUR") {
+    const eurTotal = (apiResponse.conversion_rates.EUR * amount).toFixed(2);
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals €${eurTotal} ${currSelect}`;
+  } else if (currSelect === "MXN") {
+    const mxnTotal = (apiResponse.conversion_rates.MXN * amount).toFixed(2);
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals $${mxnTotal} ${currSelect}`;
+  } else if (currSelect === "CHF") {
     const chfTotal = (apiResponse.conversion_rates.CHF * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD converts to ${chfTotal} ${currSelect}s.`;
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals ₣${chfTotal} ${currSelect}`;
+  } else if (currSelect === "AUD") {
+    const audTotal = (apiResponse.conversion_rates.AUD * amount).toFixed(2);
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals $${audTotal} ${currSelect}`;
   }
 }
 
-function printError(amount, currSelect){
+function printError(amount, currSelect) {
   document.querySelector(`#showResponse`).innerText = `There was an error accessing the currency converter for ${amount} in ${currSelect}: We were unable to find information on that currency. Please try again.`;
 }
 
@@ -49,6 +47,6 @@ function handleForm(event) {
 }
 
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   document.querySelector('form').addEventListener('submit', handleForm);
 });

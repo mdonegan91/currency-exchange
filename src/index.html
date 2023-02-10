@@ -11,21 +11,22 @@
     <div class="row">
       <div class="col-md-6">
         <hr>
-        <img src="./assets/images/mercury.png" alt="mercury illustration" class="hidden" id="mercury-img">
-        <img src="./assets/images/venus.png" alt="venus illustration" class="hidden" id="venus-img">
-        <img src="./assets/images/mars.png" alt="mars illustration" class="hidden" id="mars-img">
-        <img src="./assets/images/jupiter.png" alt="jupiter illustration" class="hidden" id="jupiter-img">
+        <img src="./assets/images/yen.png" alt="yen illustration" class="hidden" id="yen-img">
+        <img src="./assets/images/euro.png" alt="euro illustration" class="hidden" id="euro-img">
+        <img src="./assets/images/peso.png" alt="peso illustration" class="hidden" id="peso-img">
+        <img src="./assets/images/franc.png" alt="franc illustration" class="hidden" id="franc-img">
+        <img src="./assets/images/aud.png" alt="aud illustration" class="hidden" id="aud-img">
         <form id="age">
           <div class="radio-buttons">
-            <legend>Enter the amount in USD you would like to exchange:</legend>
-            <input type="number" id="money"><br><br>
-            <legend>Where are we going?</legend>
+            <label for="currency-amt">Enter the amount in USD that you would like to exchange:</label><br><br>
+            <input id="currency-amt" type="text" name="currency-amt"><br><br>
+            <label>Where are we going?</label><br><br>
             <select name="currency-name" id="currency-name">
-              <option value="yen">Japan</option>
-              <option value="euro">Spain</option>
-              <option value="rand">South Africa</option>
-              <option value="franc">Switzerland</option>
-              <option value="aud">Australia</option>
+              <option value="JPY">Japan</option>
+              <option value="EUR">Spain</option>
+              <option value="MXN">Mexico</option>
+              <option value="CHF">Switzerland</option>
+              <option value="AUD">Australia</option>
             </select>
             <br><br>
         </form>

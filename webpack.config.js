@@ -1,36 +1,38 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin'); 
+const ESLintPlugin = require('eslint-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-    entry: './src/index.js',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
-    },
-    devServer: {
-        contentBase: './dist'
-    },
-    devtool: 'eval-source-map',
-    plugins: [
-        new ESLintPlugin(),
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            title: 'Template',
-            template: './src/index.html',
-            inject: 'body'
-        })
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader'
-                ]
-            }
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  devServer: {
+    contentBase: './dist'
+  },
+  devtool: 'eval-source-map',
+  plugins: [
+    new Dotenv(),
+    new ESLintPlugin(),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Currency Exchange',
+      template: './src/index.html',
+      inject: 'body'
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
         ]
-    }
+      }
+    ]
+  }
 };
