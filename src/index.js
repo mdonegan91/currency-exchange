@@ -4,50 +4,51 @@ import './css/styles.css';
 import CurrencyExchange from "./currency-exchange.js";
 
 
-async function getCurrency(amount, selectCurr) {
-  const apiResponse = await CurrencyExchange.getCurrency(amount, selectCurr);
+async function getCurrency(amount, currency) {
+  const apiResponse = await CurrencyExchange.getCurrency(amount, currency);
   if (apiResponse.documentation) {
-    printCurrency(apiResponse, amount, selectCurr);
+    printCurrency(apiResponse, amount, currency);
   } else {
-    printError(amount, selectCurr);
+    printError(amount, currency);
   }
 }
 
-
-function printCurrency(apiResponse, amount, selectCurr) {
-  if (selectCurr === "JPY") {
+function printCurrency(apiResponse, amount, currency) {
+  if (currency === "JPY") {
     const jpyTotal = (apiResponse.conversion_rates.JPY * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals ¥${jpyTotal} ${selectCurr}`;
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals ¥${jpyTotal} ${currency}`;
     document.querySelector("img#yen-img").setAttribute("class", "show");
-  } else if (selectCurr === "EUR") {
+  } else if (currency === "EUR") {
     const eurTotal = (apiResponse.conversion_rates.EUR * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals €${eurTotal} ${selectCurr}`;
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals €${eurTotal} ${currency}`;
     document.querySelector("img#euro-img").setAttribute("class", "show");
-  } else if (selectCurr === "MXN") {
+  } else if (currency === "MXN") {
     const mxnTotal = (apiResponse.conversion_rates.MXN * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals $${mxnTotal} ${selectCurr}`;
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals $${mxnTotal} ${currency}`;
     document.querySelector("img#peso-img").setAttribute("class", "show");
-  } else if (selectCurr === "CHF") {
+  } else if (currency === "CHF") {
     const chfTotal = (apiResponse.conversion_rates.CHF * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals ₣${chfTotal} ${selectCurr}`;
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals ₣${chfTotal} ${currency}`;
     document.querySelector("img#franc-img").setAttribute("class", "show");
-  } else if (selectCurr === "AUD") {
+  } else if (currency === "AUD") {
     const audTotal = (apiResponse.conversion_rates.AUD * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals $${audTotal} ${selectCurr}`;
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals $${audTotal} ${currency}`;
     document.querySelector("img#aud-img").setAttribute("class", "show");
-  } 
+  } else {
+    document.querySelector(`#showResponse`).innerText = `There was an error accessing the currency exchange data for ${currency}. Please select a valid country.`;
+  }
 }
 
-function printError(error, selectCurr) {
-  document.querySelector(`#showResponse`).innerText = `There was an error accessing the currency data for ${selectCurr}: ${error}`;
+function printError(currency, error) {
+  document.querySelector(`#showResponse`).innerText = `There was an error accessing the currency exchange API for ${currency}. Error: ${error}. Please try again.`;
 }
 
 function getRate(event) {
   event.preventDefault();
   const amount = document.querySelector('#currency-amt').value;
   document.querySelector('#currency-amt').value = null;
-  const selectCurr = document.querySelector('#currency-name').value;
-  getCurrency(amount, selectCurr);
+  const currency = document.querySelector('#currency-name').value;
+  getCurrency(amount, currency);
   document.getElementById('showResponse').hidden = false;
   document.getElementById("reset").setAttribute("class", "show");
   document.getElementById("submit").disabled = true;

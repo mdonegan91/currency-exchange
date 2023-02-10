@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Oriya&display=swap');
+
 .hidden {
   display: none;
 }
@@ -8,14 +10,15 @@
 }
 
 body {
-  background-color: #0a471f;
-  color: white;
+  background: radial-gradient(circle, rgb(147, 202, 181) 0%, rgb(76, 126, 82) 100%);
+  color: #0e4e2b;
+  font-family: 'Noto Serif Oriya', serif;
 }
 
 #money {
   text-align: center;
   margin: 15px;
-  background-color: #15743e;
+  background: radial-gradient(circle, rgb(96, 160, 103) 0%, rgb(163, 222, 199) 100%);
   padding: 20px;
 }
 
@@ -28,32 +31,33 @@ img {
 }
 
 #submit {
-  background-color: #53a866;
+  background-color: #b2ddbb;
   border: none;
-  color: white;
+  color: #0e4e2b;
   padding: 10px 10px;
 }
 
 #reset {
-  background-color: #53a866;
+  background-color: #b2ddbb;
   border: none;
-  color: white;
+  color: #0e4e2b;
   padding: 10px 10px;
 }
 
 #currency-amt {
-  background-color: #53a866;
+  background-color: #b2ddbb;
   border: none;
-  color: white;
+  color: #0e4e2b;
   text-align: center;
   display: inline-block;
   padding: 10px 10px;
+  margin: 5px;
 }
 
 #currency-name {
-  background-color: #53a866;
+  background-color: #b2ddbb;
   border: none;
-  color: white;
+  color: #0e4e2b;
   text-align: center;
   display: inline-block;
   padding: 10px 10px;
