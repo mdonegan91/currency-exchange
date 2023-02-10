@@ -49,6 +49,7 @@ function handleForm(event) {
   document.querySelector('#currency-amt').value = null;
   const currSelect = document.querySelector('#currency-name').value;
   getCurrency(amount, currSelect);
+  document.getElementById('showResponse').hidden = false;
   document.getElementById("reset").setAttribute("class", "show");
   document.getElementById("submit").disabled = true;
   document.getElementById("reset").disabled = false;
@@ -63,6 +64,7 @@ function startOver() {
   document.querySelector("img#peso-img").setAttribute("class", "hidden");
   document.querySelector("img#franc-img").setAttribute("class", "hidden");
   document.querySelector("img#aud-img").setAttribute("class", "hidden");
+  document.getElementById('showResponse').hidden = true;
 }
 
 window.addEventListener('load', function () {
