@@ -39,8 +39,8 @@ function printCurrency(apiResponse, amount, currency) {
   }
 }
 
-function printError(currency, error) {
-  document.querySelector(`#showResponse`).innerText = `There was an error accessing the currency exchange API for ${currency}. Error: ${error}. Please try again.`;
+function printError(amount, currency) {
+  document.querySelector(`#showResponse`).innerText = `There was an error accessing the currency exchange API for $${amount} in ${currency}. Please try again.`;
 }
 
 function getRate(event) {
