@@ -4,51 +4,50 @@ import './css/styles.css';
 import CurrencyExchange from "./currency-exchange.js";
 
 
-async function getCurrency(amount, currSelect) {
-  const apiResponse = await CurrencyExchange.getCurrency(amount, currSelect);
+async function getCurrency(amount, selectCurr) {
+  const apiResponse = await CurrencyExchange.getCurrency(amount, selectCurr);
   if (apiResponse.documentation) {
-    printCurrency(apiResponse, amount, currSelect);
+    printCurrency(apiResponse, amount, selectCurr);
   } else {
-    printError(amount, currSelect);
+    printError(amount, selectCurr);
   }
 }
 
 
-function printCurrency(apiResponse, amount, currSelect) {
-
-  if (currSelect === "JPY") {
+function printCurrency(apiResponse, amount, selectCurr) {
+  if (selectCurr === "JPY") {
     const jpyTotal = (apiResponse.conversion_rates.JPY * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals ¥${jpyTotal} ${currSelect}`;
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals ¥${jpyTotal} ${selectCurr}`;
     document.querySelector("img#yen-img").setAttribute("class", "show");
-  } else if (currSelect === "EUR") {
+  } else if (selectCurr === "EUR") {
     const eurTotal = (apiResponse.conversion_rates.EUR * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals €${eurTotal} ${currSelect}`;
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals €${eurTotal} ${selectCurr}`;
     document.querySelector("img#euro-img").setAttribute("class", "show");
-  } else if (currSelect === "MXN") {
+  } else if (selectCurr === "MXN") {
     const mxnTotal = (apiResponse.conversion_rates.MXN * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals $${mxnTotal} ${currSelect}`;
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals $${mxnTotal} ${selectCurr}`;
     document.querySelector("img#peso-img").setAttribute("class", "show");
-  } else if (currSelect === "CHF") {
+  } else if (selectCurr === "CHF") {
     const chfTotal = (apiResponse.conversion_rates.CHF * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals ₣${chfTotal} ${currSelect}`;
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals ₣${chfTotal} ${selectCurr}`;
     document.querySelector("img#franc-img").setAttribute("class", "show");
-  } else if (currSelect === "AUD") {
+  } else if (selectCurr === "AUD") {
     const audTotal = (apiResponse.conversion_rates.AUD * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals $${audTotal} ${currSelect}`;
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals $${audTotal} ${selectCurr}`;
     document.querySelector("img#aud-img").setAttribute("class", "show");
-  }
+  } 
 }
 
-function printError(amount, currSelect) {
-  document.querySelector(`#showResponse`).innerText = `There was an error accessing the currency converter for ${amount} in ${currSelect}: We were unable to find information on that currency. Please try again.`;
+function printError(error, selectCurr) {
+  document.querySelector(`#showResponse`).innerText = `There was an error accessing the currency data for ${selectCurr}: ${error}`;
 }
 
-function handleForm(event) {
+function getRate(event) {
   event.preventDefault();
   const amount = document.querySelector('#currency-amt').value;
   document.querySelector('#currency-amt').value = null;
-  const currSelect = document.querySelector('#currency-name').value;
-  getCurrency(amount, currSelect);
+  const selectCurr = document.querySelector('#currency-name').value;
+  getCurrency(amount, selectCurr);
   document.getElementById('showResponse').hidden = false;
   document.getElementById("reset").setAttribute("class", "show");
   document.getElementById("submit").disabled = true;
@@ -68,6 +67,6 @@ function startOver() {
 }
 
 window.addEventListener('load', function () {
-  document.querySelector('form').addEventListener('submit', handleForm);
+  document.querySelector('form').addEventListener('submit', getRate);
   document.querySelector("button.delete").addEventListener("click", startOver);
 });
