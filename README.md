@@ -12,6 +12,7 @@ _A web application that..._
 * HTML / CSS
 * Boostrap
 * Webpack
+* API
 
 
 ## Setup/Installation Requirements

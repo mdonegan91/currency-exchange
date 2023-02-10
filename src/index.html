@@ -1,9 +1,77 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
-    <title>Currency Exchange</title>
+  <title>Currency Exchange</title>
 </head>
+
 <body>
-    
+  <div class="container">
+    <h1>Currency Exchange</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <hr>
+        <img src="./assets/images/mercury.png" alt="mercury illustration" class="hidden" id="mercury-img">
+        <img src="./assets/images/venus.png" alt="venus illustration" class="hidden" id="venus-img">
+        <img src="./assets/images/mars.png" alt="mars illustration" class="hidden" id="mars-img">
+        <img src="./assets/images/jupiter.png" alt="jupiter illustration" class="hidden" id="jupiter-img">
+        <p>Welcome to the Galactic Age calculator. Enter your age below to find out how old you in galactic years:</p>
+        <form id="age">
+          <div class="radio-buttons">
+            <label for="current">Your age:</label><br>
+            <input type="number" id="current"><br><br>
+            <label for="past">A favorite past age:</label><br>
+            <input type="number" id="past"><br><br>
+            <label for="future">A favorite future age:</label><br>
+            <input type="number" id="future"><br><br>
+            <legend>Where are we going?</legend>
+            <input type="radio" name="planet" value="mercury" id="mercury-button">
+            <label for="mercury">Mercury</label>
+            <input type="radio" name="planet" value="venus" id="venus-button">
+            <label for="venus">Venus</label>
+            <input type="radio" name="planet" value="mars" id="mars-button">
+            <label for="mars">Mars</label>
+            <input type="radio" name="planet" value="jupiter" id="jupiter-button">
+            <label for="jupiter">Jupiter</label><br><br>
+        </form>
+        <button type="submit" id="submit">Blast Off</button>
+      </div>
+    </div>
+
+    <div id="results" class="col-md-6">
+
+      <div id="mercury-trip" class="hidden">
+        <h2>Blasting Off!</h2>
+        <p>Your Mercurian age is: <span id="mercury-age"></span></p>
+        <p>Mercurian years since your favorite age: <span id="mercury-past-age"></span></p>
+        <p>Mercurian years until your favorite age: <span id="mercury-future-age"></span></p>
+      </div>
+
+      <div id="venus-trip" class="hidden">
+        <h2>Blasting Off!</h2>
+        <p>Your Venusian age is: <span id="venus-age"></span></p>
+        <p>Venusian years since your favorite age: <span id="venus-past-age"></span></p>
+        <p>Venusian years until your favorite age: <span id="venus-future-age"></span></p>
+      </div>
+
+      <div id="mars-trip" class="hidden">
+        <h2>Blasting Off!</h2>
+        <p>Your Martian age is: <span id="mars-age"></span></p>
+        <p>Martian years since your favorite age: <span id="mars-past-age"></span></p>
+        <p>Martian years until your favorite age: <span id="mars-future-age"></span></p>
+      </div>
+
+      <div id="jupiter-trip" class="hidden">
+        <h2>Blasting Off!</h2>
+        <p>Your Jupiterian age is: <span id="jupiter-age"></span></p>
+        <p>Jupiterian years since your favorite age: <span id="jupiter-past-age"></span></p>
+        <p>Jupiterian years until your favorite age: <span id="jupiter-future-age"></span></p>
+      </div>
+
+      <button class="btn-primary delete hidden" type="button" id="reset">Take me Back to Earth</button>
+      
+    </div>
+
 </body>
+
 </html>
