@@ -4,7 +4,7 @@
 
 #### _Description_
 
-A web application that asks a user to input a dollar amount in USD and  select a country, and returns currency exchange rate information based on their input._
+A web application that asks a user to input a dollar amount in USD and  select a country, and returns currency exchange rate information based on their input.
 
 ## Technologies Used
 
