@@ -1,0 +1,66 @@
+.hidden {
+  display: none;
+}
+
+.container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+body {
+  background-color: #0a471f;
+  color: white;
+}
+
+#age {
+  text-align: center;
+  margin: 15px;
+  background-color: #15743e;
+  padding: 20px;
+}
+
+img {
+  width: 40%;
+  position: absolute;
+  top: 300px;
+  right: 1px;
+  height: auto;
+}
+
+#submit {
+  background-color: #53a866;
+  border: none;
+  color: white;
+  padding: 10px 10px;
+}
+
+#reset {
+  background-color: #53a866;
+  border: none;
+  color: white;
+  padding: 10px 10px;
+}
+
+#money {
+  background-color: #53a866;
+  border: none;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  padding: 10px 10px;
+}
+
+#currency-name {
+  background-color: #53a866;
+  border: none;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  padding: 10px 10px;
+}
+
+@media screen and (max-width: 750px) {
+  img {
+    display: none;
+  }
+}
