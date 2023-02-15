@@ -14,29 +14,13 @@ async function getCurrency(amount, currency) {
 }
 
 function printCurrency(apiResponse, amount, currency) {
-  if (currency === "JPY") {
-    const jpyTotal = (apiResponse.conversion_rates.JPY * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals ¥${jpyTotal} ${currency}`;
+  if(apiResponse.conversion_rates){ // making sure the object has what we want
+    const total = (apiResponse.conversion_rates[currency] * amount).toFixed(2); // using bracket notation to directly grab the value of any matching key
+    document.querySelector('#showResponse').innerText = `$${amount} USD equals ${total} ${currency}`;
     document.querySelector("img#yen-img").setAttribute("class", "show");
-  } else if (currency === "EUR") {
-    const eurTotal = (apiResponse.conversion_rates.EUR * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals €${eurTotal} ${currency}`;
-    document.querySelector("img#euro-img").setAttribute("class", "show");
-  } else if (currency === "MXN") {
-    const mxnTotal = (apiResponse.conversion_rates.MXN * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals $${mxnTotal} ${currency}`;
-    document.querySelector("img#peso-img").setAttribute("class", "show");
-  } else if (currency === "CHF") {
-    const chfTotal = (apiResponse.conversion_rates.CHF * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals ₣${chfTotal} ${currency}`;
-    document.querySelector("img#franc-img").setAttribute("class", "show");
-  } else if (currency === "AUD") {
-    const audTotal = (apiResponse.conversion_rates.AUD * amount).toFixed(2);
-    document.querySelector('#showResponse').innerText = `$${amount} USD equals $${audTotal} ${currency}`;
-    document.querySelector("img#aud-img").setAttribute("class", "show");
-  } else {
+}else{
     document.querySelector(`#showResponse`).innerText = `There was an error accessing the currency exchange data for ${currency}. Please select a valid country.`;
-  }
+}
 }
 
 function printError(amount, currency) {
